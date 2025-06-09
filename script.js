@@ -73,3 +73,33 @@ showMoreBtn.addEventListener('click', () => {
 
   showMoreBtn.innerHTML = isExpanded ? 'Lebih Sedikit' : 'Selengkapnya';
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const text = "Website yang Saya Buat";
+    const element = document.getElementById("typing-text");
+
+    let i = 0;
+    let isDeleting = false;
+
+    function typeWriterLoop() {
+      if (!isDeleting) {
+        element.textContent = text.substring(0, i + 1);
+        i++;
+        if (i === text.length) {
+          isDeleting = true;
+          setTimeout(typeWriterLoop, 1500); // jeda sebelum menghapus
+          return;
+        }
+      } else {
+        element.textContent = text.substring(0, i - 1);
+        i--;
+        if (i === 0) {
+          isDeleting = false;
+        }
+      }
+
+      setTimeout(typeWriterLoop, isDeleting ? 50 : 100); // kecepatan ketik/hapus
+    }
+
+    typeWriterLoop();
+  });
