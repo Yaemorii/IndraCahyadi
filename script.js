@@ -25,6 +25,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   this.reset();
 });
 
+// Scroll ke bagian projects
 document.querySelector('.btn').addEventListener('click', function(e) {
   e.preventDefault();
   document.querySelector('#projects').scrollIntoView({
@@ -32,30 +33,33 @@ document.querySelector('.btn').addEventListener('click', function(e) {
   });
 });
 
- function openModal(imgElement) {
-    const modal = document.getElementById("imgModal");
-    const modalImg = document.getElementById("modalImage");
+// Modal logika: buka & tutup
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImage");
 
+// Delegasi: buka modal saat gambar di-klik
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('design-img')) {
     modal.style.display = "block";
-    modalImg.src = imgElement.src;
+    modalImg.src = e.target.src;
   }
 
-  function closeModal() {
-    document.getElementById("imgModal").style.display = "none";
+  // Tutup modal jika klik di luar gambar
+  if (e.target.id === "imgModal" || e.target.classList.contains('close')) {
+    modal.style.display = "none";
   }
+});
 
-  // Sembunyikan semua wireframe di luar 6 pertama
+// Tampilkan hanya 6 wireframe pertama
 const wireframeCards = document.querySelectorAll('#wireframeGrid .design-card');
 const showMoreBtn = document.getElementById('showMoreBtn');
 
-// Sembunyikan elemen ke-6 dan seterusnya
 wireframeCards.forEach((card, index) => {
   if (index >= 6) {
     card.style.display = 'none';
   }
 });
 
-// Toggle tampilkan sisanya saat tombol diklik
 let isExpanded = false;
 
 showMoreBtn.addEventListener('click', () => {
@@ -67,6 +71,5 @@ showMoreBtn.addEventListener('click', () => {
     }
   });
 
-  // Ganti teks dan panah
   showMoreBtn.innerHTML = isExpanded ? 'Lebih Sedikit' : 'Selengkapnya';
 });
