@@ -103,3 +103,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     typeWriterLoop();
   });
+
+  // Fungsi untuk menampilkan modal dengan gambar yang diklik
+  function openModal(imgElement) {
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImage");
+
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+    modalImg.alt = imgElement.alt;
+  }
+
+  // Fungsi untuk menutup modal
+  function closeModal() {
+    const modal = document.getElementById("imgModal");
+    modal.style.display = "none";
+  }
+
+  // Optional: Tutup modal saat klik di luar gambar
+  window.onclick = function (event) {
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImage");
+    if (event.target === modal && event.target !== modalImg) {
+      modal.style.display = "none";
+    }
+  };
