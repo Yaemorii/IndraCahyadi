@@ -316,3 +316,13 @@ footer {
   background: #524bff;
 }
 
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+
+  .hidden-mobile.show {
+    display: flex;
+  }
+}
+
